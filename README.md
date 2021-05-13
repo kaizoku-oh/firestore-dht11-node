@@ -1,5 +1,5 @@
-# pio-dht11
-An example of using esp-idf dht11 sensor component with platformio
+# firestore-dht11-node
+IoT node that sends temperature and humidity data periodically to Cloud Firestore
 
 <!-- ![Firestore logo](https://github.com/kaizoku-oh/pio-dht11/blob/main/docs/image/logo.png) -->
 <!-- ![](https://github.com/<OWNER>/<REPOSITORY>/workflows/<WORKFLOW_NAME>/badge.svg) -->
@@ -11,8 +11,19 @@ An example of using esp-idf dht11 sensor component with platformio
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kaizoku-oh/pio-dht11/blob/main/LICENSE)
 [![Twitter follow](https://img.shields.io/twitter/follow/kaizoku_ouh?style=social)](https://twitter.com/kaizoku_ouh)
 
-## How to use?
-### Window (Powershell)
+## Getting started
+This project is created [PlatformIO](https://platformio.org/) IDE using the [esp-idf framework](https://docs.platformio.org/en/latest/frameworks/espidf.html), the project also uses 2 external esp-idf components which are found as submodules under the [components](https://github.com/kaizoku-oh/pio-dht11/tree/main/components) directory.
+
+To get started:
+1. Install [PlatformIO Extension for vscode](https://platformio.org/install/ide?install=vscode)
+2. Create a new project using ESP-IDF framework
+3. Under the root of the project create a new directory called [components](https://docs.platformio.org/en/latest/frameworks/espidf.html#esp-idf-components)
+4. Clone this repo
+``` bash
+$ git clone https://github.com/kaizoku-oh/firestore-dht11-node.git --recursive
+```
+5. To avoid exposing sensitive data in the code we'll store them in environment variables that'll be when building the project.
+#### Window (Powershell)
 ``` powershell
 # Set local environment variables
 > $env:WIFI_SSID = '"TYPE_YOUR_WIFI_SSID_HERE"'
@@ -27,7 +38,7 @@ An example of using esp-idf dht11 sensor component with platformio
 > Get-ChildItem Env:FIRESTORE_FIREBASE_API_KEY
 ```
 
-### Linux (Bash)
+#### Linux (Bash)
 ``` bash
 # Set local environment variables
 $ export WIFI_SSID='"TYPE_YOUR_WIFI_SSID_HERE"'
