@@ -11,13 +11,17 @@
 #include "app_wifi.h"
 #include "app_ota.h"
 
-static void _send_data(struct dht11_reading *);
-static void _firestore_task(void *);
+static void _app_main_send_data(struct dht11_reading *);
+static void _app_main_firestore_task(void *);
 
 #define APP_MAIN_TAG                             "APP_MAIN"
 #define APP_MAIN_DHT11_PIN                       GPIO_NUM_4
-#define APP_MAIN_DOC_MAX_SIZE                    128
-#define APP_MAIN_DOC_EXAMPLE                     "{"                          \
+
+#define APP_MAIN_FIRESTORE_TASK_STACK_SIZE       10240
+#define APP_MAIN_FIRESTORE_TASK_PRIORITY         4
+#define APP_MAIN_FIRESTORE_PERIOD_MS             2500
+#define APP_MAIN_FIRESTORE_DOC_MAX_SIZE          128
+#define APP_MAIN_FIRESTORE_DOC_EXAMPLE           "{"                          \
                                                    "\"fields\": {"            \
                                                      "\"humidity\": {"        \
                                                        "\"integerValue\": 55" \
@@ -29,7 +33,7 @@ static void _firestore_task(void *);
                                                  "}"
 
 static uint32_t u32DocLength;
-static char tcDoc[APP_MAIN_DOC_MAX_SIZE];
+static char tcDoc[APP_MAIN_FIRESTORE_DOC_MAX_SIZE];
 static struct dht11_reading stDht11Reading;
 
 void app_main(void)
@@ -38,10 +42,15 @@ void app_main(void)
   app_wifi_wait();
   app_ota_start();
 
-  xTaskCreate(_firestore_task, "firestore", 10240, NULL, 5, NULL);
+  xTaskCreate(_app_main_firestore_task,
+              "firestore",
+              APP_MAIN_FIRESTORE_TASK_STACK_SIZE,
+              NULL,
+              APP_MAIN_FIRESTORE_TASK_PRIORITY,
+              NULL);
 }
 
-static void _firestore_task(void *pvParameter)
+static void _app_main_firestore_task(void *pvParameter)
 {
   DHT11_init(APP_MAIN_DHT11_PIN);
   firestore_init();
@@ -57,7 +66,7 @@ static void _firestore_task(void *pvParameter)
                "Temperature: %d °C    Humidity: %d %%",
                stDht11Reading.temperature,
                stDht11Reading.humidity);
-      _send_data(&stDht11Reading);
+      _app_main_send_data(&stDht11Reading);
     } 
     else
     {
@@ -67,11 +76,11 @@ static void _firestore_task(void *pvParameter)
                ?"Timeout"
                :"Bad CRC");
     }
-    vTaskDelay(2500 / portTICK_PERIOD_MS);
+    vTaskDelay(APP_MAIN_FIRESTORE_PERIOD_MS / portTICK_PERIOD_MS);
   }
 }
 
-static void _send_data(struct dht11_reading *pstReading)
+static void _app_main_send_data(struct dht11_reading *pstReading)
 {
   /* Format document with newly fetched data */
   u32DocLength = snprintf(tcDoc,
