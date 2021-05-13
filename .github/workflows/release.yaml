@@ -37,12 +37,11 @@ jobs:
     - name: Check Firmware
       run: |
         pio check
-    # Upload firmware as a release asset
-    - name: Upload binaries to release
-      run: |
         pwd
         ls -la
         ls -la .pio/build/esp32dev
+    # Upload firmware as a release asset
+    - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
