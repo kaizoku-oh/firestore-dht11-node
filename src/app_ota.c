@@ -33,13 +33,13 @@ static const char *pcApiUrl = APP_OTA_BASE_URL APP_OTA_ENDPOINT
                               "&github_repository="APP_OTA_GITHUB_REPOSITORY
                               "&device_current_fw_version="APP_OTA_DEVICE_CURRENT_FW_VERSION;
 
-/* CA certificates */
-/* $ openssl s_client -showcerts -verify 5 -connect s3.amazonaws.com:443 < /dev/null */
-extern const char tcAwsS3RootCaCertPemStart[] asm("_binary_aws_s3_root_ca_cert_pem_start");
-extern const char tcAwsS3RootCaCertPemEnd[] asm("_binary_aws_s3_root_ca_cert_pem_end");
+/* Certificates */
+/* $ openssl s_client -showcerts -verify 5 -connect github-releases.githubusercontent.com:443 < /dev/null */
+extern const char tcGithubReleaseCertPemStart[] asm("_binary_github_cert_pem_start");
+extern const char tcGithubReleaseCertPemEnd[] asm("_binary_github_cert_pem_end");
 /* $ openssl s_client -showcerts -verify 5 -connect herokuapp.com:443 < /dev/null */
-extern const char tcHerokuRootCaCertPemStart[] asm("_binary_heroku_root_ca_cert_pem_start");
-extern const char tcHerokuRootCaCertPemEnd[] asm("_binary_heroku_root_ca_cert_pem_end");
+extern const char tcHerokuCertPemStart[] asm("_binary_heroku_cert_pem_start");
+extern const char tcHerokuCertPemEnd[] asm("_binary_heroku_cert_pem_end");
 
 /* HTTP receive buffer */
 char tcHttpRcvBuffer[APP_OTA_HTTP_APP_RX_BUFFER_SIZE];
@@ -93,7 +93,7 @@ static char* _app_ota_get_download_url(void)
     .url = pcApiUrl,
     .buffer_size = APP_OTA_HTTP_INTERNAL_RX_BUFFER_SIZE,
     .event_handler = _app_ota_http_event_handler,
-    .cert_pem = tcHerokuRootCaCertPemStart,
+    .cert_pem = tcHerokuCertPemStart,
   };
   pstClient = esp_http_client_init(&config);
   s32RetVal = esp_http_client_perform(pstClient);
@@ -153,7 +153,7 @@ static void _app_ota_check_update_task(void *pvParameter)
       esp_http_client_config_t ota_client_config =
       {
         .url = pcDownloadUrl,
-        .cert_pem = tcAwsS3RootCaCertPemStart,
+        .cert_pem = tcGithubReleaseCertPemStart,
         .buffer_size = APP_OTA_HTTP_INTERNAL_RX_BUFFER_SIZE,
         .buffer_size_tx = APP_OTA_HTTP_INTERNAL_TX_BUFFER_SIZE,
       };
