@@ -1,3 +1,6 @@
 [submodule "components/esp32-DHT11"]
 	path = components/esp32-DHT11
 	url = https://github.com/kaizoku-oh/esp32-DHT11.git
+[submodule "components/firestore"]
+	path = components/firestore
+	url = https://github.com/kaizoku-oh/firestore.git
