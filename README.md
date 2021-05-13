@@ -1,18 +1,18 @@
 # firestore-dht11-node
 IoT node that sends temperature and humidity data periodically to Cloud Firestore
 
-<!-- ![Firestore logo](https://github.com/kaizoku-oh/pio-dht11/blob/main/docs/image/logo.png) -->
+<!-- ![Firestore logo](https://github.com/kaizoku-oh/firestore-dht11-node/blob/main/docs/image/logo.png) -->
 <!-- ![](https://github.com/<OWNER>/<REPOSITORY>/workflows/<WORKFLOW_NAME>/badge.svg) -->
-![GitHub Build workflow status](https://github.com/kaizoku-oh/pio-dht11/workflows/Build/badge.svg)
-![GitHub Release workflow status](https://github.com/kaizoku-oh/pio-dht11/workflows/Release/badge.svg)
-[![GitHub release](https://img.shields.io/github/v/release/kaizoku-oh/pio-dht11)](https://github.com/kaizoku-oh/pio-dht11/releases)
-[![GitHub issues](https://img.shields.io/github/issues/kaizoku-oh/pio-dht11)](https://github.com/kaizoku-oh/pio-dht11/issues)
-![GitHub top language](https://img.shields.io/github/languages/top/kaizoku-oh/pio-dht11)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kaizoku-oh/pio-dht11/blob/main/LICENSE)
+![GitHub Build workflow status](https://github.com/kaizoku-oh/firestore-dht11-node/workflows/Build/badge.svg)
+![GitHub Release workflow status](https://github.com/kaizoku-oh/firestore-dht11-node/workflows/Release/badge.svg)
+[![GitHub release](https://img.shields.io/github/v/release/kaizoku-oh/firestore-dht11-node)](https://github.com/kaizoku-oh/firestore-dht11-node/releases)
+[![GitHub issues](https://img.shields.io/github/issues/kaizoku-oh/firestore-dht11-node)](https://github.com/kaizoku-oh/firestore-dht11-node/issues)
+![GitHub top language](https://img.shields.io/github/languages/top/kaizoku-oh/firestore-dht11-node)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/kaizoku-oh/firestore-dht11-node/blob/main/LICENSE)
 [![Twitter follow](https://img.shields.io/twitter/follow/kaizoku_ouh?style=social)](https://twitter.com/kaizoku_ouh)
 
 ## Getting started
-This project is created [PlatformIO](https://platformio.org/) IDE using the [esp-idf framework](https://docs.platformio.org/en/latest/frameworks/espidf.html), the project also uses 2 external esp-idf components which are found as submodules under the [components](https://github.com/kaizoku-oh/pio-dht11/tree/main/components) directory.
+This project is created [PlatformIO](https://platformio.org/) IDE using the [esp-idf framework](https://docs.platformio.org/en/latest/frameworks/espidf.html), the project also uses 2 external esp-idf components which are found as submodules under the [components](https://github.com/kaizoku-oh/firestore-dht11-node/tree/main/components) directory.
 
 To get started:
 1. Install [PlatformIO Extension for vscode](https://platformio.org/install/ide?install=vscode)
