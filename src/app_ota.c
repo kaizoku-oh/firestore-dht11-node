@@ -172,6 +172,7 @@ static void _app_ota_check_update_task(void *pvParameter)
     {
       ESP_LOGW(APP_OTA_TAG, "Could not get download url");
     }
+    ESP_LOGI(APP_OTA_TAG, "Device is running App version: %s", APP_OTA_DEVICE_CURRENT_FW_VERSION);
     vTaskDelay(APP_OTA_TASK_PERIOD_MS / portTICK_PERIOD_MS);
   }
 }
