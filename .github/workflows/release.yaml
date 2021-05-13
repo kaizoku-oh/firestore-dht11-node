@@ -33,6 +33,9 @@ jobs:
         FIRESTORE_FIREBASE_API_KEY: ${{ secrets.FIRESTORE_FIREBASE_API_KEY }}
       run: |
         pio run
+        pwd
+        ls -la
+        ls -la .pio/build/esp32dev
     # Check the firmware
     - name: Check Firmware
       run: |
