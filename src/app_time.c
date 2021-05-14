@@ -61,6 +61,11 @@ void app_time_init()
       s32TimeStatus = ESP_FAIL;
     }
   }
+  else
+  {
+    ESP_LOGI(APP_TIME_TAG, "Time is already set");
+    s32TimeStatus = ESP_OK;
+  }
 }
 
 esp_err_t app_time_get_ts(int64_t *ps64Timestamp)
