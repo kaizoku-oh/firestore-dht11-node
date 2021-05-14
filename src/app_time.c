@@ -34,7 +34,8 @@ void app_time_init()
     sntp_init();
     /* Try to get new time from sntp */
     u08Retries = 0;
-    while((SNTP_SYNC_STATUS_RESET == (eStatus = sntp_get_sync_status())) &&
+    while((SNTP_SYNC_STATUS_RESET == (eStatus = sntp_get_sync_status()) ||
+          (SNTP_SYNC_STATUS_IN_PROGRESS == (eStatus = sntp_get_sync_status()))) &&
           (++u08Retries < APP_TIME_RETRIES_COUNT))
     {
       ESP_LOGD(APP_TIME_TAG,
