@@ -99,7 +99,8 @@ static char* _app_ota_get_download_url(void)
   s32RetVal = esp_http_client_perform(pstClient);
   if(ESP_OK == s32RetVal)
   {
-    ESP_LOGD(APP_OTA_TAG, "Status = %d, content_length = %d",
+    ESP_LOGD(APP_OTA_TAG,
+             "Status = %d, content_length = %d",
              esp_http_client_get_status_code(pstClient),
              esp_http_client_get_content_length(pstClient));
     s32HttpCode = esp_http_client_get_status_code(pstClient);
