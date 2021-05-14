@@ -8,7 +8,7 @@
 
 #define APP_TIME_TAG                             "TIME_APP"
 #define APP_TIME_RETRIES_COUNT                   16
-#define APP_TIME_BUFF_MAX_SIZE                   64
+#define APP_TIME_BUFF_MAX_SIZE                   128
 
 esp_err_t s32TimeStatus = ESP_FAIL;
 static time_t stNow;
