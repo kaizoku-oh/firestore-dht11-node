@@ -93,7 +93,7 @@ static void _app_main_send_data(struct dht11_reading *pstReading)
   int64_t s64Timestamp;
 
   /* Format document with newly fetched data */
-  if(ESP_OK == app_time_get_ts(&s64Timestamp))
+  if(ESP_OK == app_time_get_timestamp(&s64Timestamp))
   {
     ESP_LOGI(APP_MAIN_TAG, "Current timestamp: %lld", s64Timestamp);
     u32DocLength = snprintf(tcDoc,
